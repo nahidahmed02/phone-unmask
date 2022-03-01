@@ -28,6 +28,7 @@ const loadPhone = () => {
 
 document.getElementById('notFound').style.display = 'none';
 
+// display searched phones
 const displayPhone = phones => {
     // get the array of phone
     const allPhones = phones.data;
@@ -53,11 +54,24 @@ const displayPhone = phones => {
                             <div class="card-body">
                                 <h5 class="card-title">Brand: ${phone.brand}</h5>
                                 <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>  
-                                <button onclick="loadDetails()" class="btn btn-info ">See Details</button>              
+                                <button onclick="loadDetails('${phone.slug}')" class="btn btn-info ">See Details</button>              
                             </div>
                             </div>
                         </div>`;
             displayDiv.appendChild(div);
         })
     }
+}
+
+// load details of selected phone
+const loadDetails = id => {
+    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayDetails(data.data))
+}
+
+// display details of specefic phone
+const displayDetails = info => {
+    const detailsDiv = document.getElementById('display-details');
 }
