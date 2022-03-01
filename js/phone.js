@@ -1,14 +1,24 @@
+document.getElementById('notFound').style.display = 'none';
 const loadPhone = () => {
     const inputField = document.getElementById('input-field');
     const inputText = inputField.value;
 
     // clear input field
     inputField.value = '';
+    if (inputText == '') {
+        document.getElementById('notFound').style.display = 'block';
 
+        const displayDiv = document.getElementById('search-result');
+        // clear previous search result
+        displayDiv.textContent = '';
+    }
+    else {
+        document.getElementById('notFound').style.display = 'none';
 
-    fetch(`https://openapi.programming-hero.com/api/phones?search=${inputText}`)
-        .then(res => res.json())
-        .then(data => displayPhone(data.data))
+        fetch(`https://openapi.programming-hero.com/api/phones?search=${inputText}`)
+            .then(res => res.json())
+            .then(data => displayPhone(data.data))
+    }
 }
 
 const displayPhone = phones => {
