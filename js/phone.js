@@ -2,6 +2,9 @@ const loadPhone = () => {
     const inputField = document.getElementById('input-field');
     const inputText = inputField.value;
 
+    // clear input field
+    inputField.value = '';
+
 
     fetch(`https://openapi.programming-hero.com/api/phones?search=${inputText}`)
         .then(res => res.json())
@@ -9,10 +12,11 @@ const loadPhone = () => {
 }
 
 const displayPhone = phones => {
-    // console.log(phones);
+    const displayDiv = document.getElementById('search-result');
+    // clear previous search result
+    displayDiv.textContent = '';
+
     phones.forEach(phone => {
-        console.log(phone);
-        const displayDiv = document.getElementById('search-result');
         const div = document.createElement('div');
         div.innerHTML = `
                             <div class="col">
@@ -20,7 +24,8 @@ const displayPhone = phones => {
                                 <img class="w-50 mx-auto mt-3" src="${phone.image}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title">Brand: ${phone.brand}</h5>
-                                <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>                
+                                <h5 class="card-title">Phone Name: ${phone.phone_name}</h5>  
+                                <button onclick="loadDetails()" class="btn btn-info ">See Details</button>              
                             </div>
                             </div>
                         </div>`;
