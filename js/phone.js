@@ -35,7 +35,7 @@ document.getElementById('notFound').style.display = 'none';
 // display searched phones
 const displayPhone = phones => {
     // get the array of phone
-    const allPhones = phones.data;
+    const allPhones = phones.data.slice(0, 20);
 
     // clear previous search result
     const displayDiv = document.getElementById('search-result');
@@ -81,8 +81,8 @@ const loadDetails = id => {
 
 // display details of specefic phone
 const displayDetails = info => {
-    console.log(info);
-    // clear the details field
+
+    // clear details field
     const detailsDiv = document.getElementById('display-details');
     detailsDiv.textContent = '';
 
@@ -106,10 +106,28 @@ const displayDetails = info => {
 
                         <h6 class="card-title"><span class="fw-bold">Chip Set :</span> <span class="fst-italic"> ${info.mainFeatures.chipSet}</span></h6>  
 
-                        <button onclick="moreInfo('')" class="btn btn-info btn-sm">More Info</button>              
+                        <button onclick="moreInfo()" class="btn btn-info btn-sm">More Info</button>              
                     </div>
                 </div>
                 </div>`;
     detailsDiv.appendChild(div);
 }
 
+const moreInfo = () => {
+    const detailsDiv = document.getElementById('display-details');
+    const moreInfoDiv = document.createElement('div');
+    moreInfoDiv.innerHTML = `<div class="col-lg-8">
+    <div id="list-example" class="list-group">
+    <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
+    <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
+  </div>
+  <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+    <h4 id="list-item-1">Item 1</h4>
+    <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+    
+    <h4 id="list-item-2">Item 2</h4>
+    <p>This is some placeholder content for the scrollspy page. Note that as you scroll down the page, the appropriate navigation link is highlighted. It's repeated throughout the component example. We keep adding some more example copy here to emphasize the scrolling and highlighting.</p>
+  </div>
+    </div>`;
+    detailsDiv.appendChild(moreInfoDiv);
+}
