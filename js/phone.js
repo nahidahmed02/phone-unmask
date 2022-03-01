@@ -12,9 +12,13 @@ const loadPhone = () => {
         document.getElementById('noName').style.display = 'block';
         document.getElementById('notFound').style.display = 'none';
 
-        const displayDiv = document.getElementById('search-result');
         // clear previous search result
+        const displayDiv = document.getElementById('search-result');
         displayDiv.textContent = '';
+
+        // clear details div
+        const detailsDiv = document.getElementById('display-details');
+        detailsDiv.textContent = '';
     }
     else {
         document.getElementById('noName').style.display = 'none';
@@ -33,9 +37,13 @@ const displayPhone = phones => {
     // get the array of phone
     const allPhones = phones.data;
 
-    const displayDiv = document.getElementById('search-result');
     // clear previous search result
+    const displayDiv = document.getElementById('search-result');
     displayDiv.textContent = '';
+
+    // clear details div
+    const detailsDiv = document.getElementById('display-details');
+    detailsDiv.textContent = '';
 
     if (phones.status === false) {
         // msg for not found the phone
@@ -73,5 +81,35 @@ const loadDetails = id => {
 
 // display details of specefic phone
 const displayDetails = info => {
+    console.log(info);
+    // clear the details field
     const detailsDiv = document.getElementById('display-details');
+    detailsDiv.textContent = '';
+
+    const div = document.createElement('div');
+    // dynamic html
+    div.innerHTML = `
+                    <div class="col">
+                        <div class="card">
+                        <img class="w-50 mx-auto mt-3" src="${info.image}" class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h6 class="card-title"><span class="fw-bold">Phone Name:</span> <span class="fst-italic"> ${info.name}</span></h6>
+
+                        <h6 class="card-title"><span class="fw-bold">Release Date:</span> <span class="fst-italic"> ${info.releaseDate ? info.releaseDate : 'Not Available'}</span></h6>
+                        
+                        <h6 class="card-title"><span class="fw-bold">Storage:</span> <span class="fst-italic"> ${info.mainFeatures.storage}</span></h6>  
+
+                        <h6 class="card-title"><span class="fw-bold">Memory:</span> <span class="fst-italic"> ${info.mainFeatures.memory}</span></h6>  
+
+                        <h6 class="card-title"><span class="fw-bold">Display Size:</span> <span class="fst-italic"> ${info.mainFeatures.displaySize}</span></h6>  
+
+                        <h6 class="card-title"><span class="fw-bold">Chip Set :</span> <span class="fst-italic"> ${info.mainFeatures.chipSet}</span></h6>  
+
+                        <button onclick="moreInfo('')" class="btn btn-info btn-sm">More Info</button>              
+                    </div>
+                </div>
+                </div>`;
+    detailsDiv.appendChild(div);
 }
+
