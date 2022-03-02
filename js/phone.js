@@ -81,7 +81,7 @@ const loadDetails = id => {
 
 // display details of specefic phone
 const displayDetails = info => {
-
+    console.log(info);
     // clear details field
     const detailsDiv = document.getElementById('display-details');
     detailsDiv.textContent = '';
@@ -106,57 +106,69 @@ const displayDetails = info => {
 
                         <h6 class="card-title"><span class="fw-bold">Chip Set :</span> <span class="fst-italic"> ${info.mainFeatures.chipSet}</span></h6>  
 
-                        <button onclick="moreInfo()" class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">Double Click for More Info</button>              
+                        <button id="moreInfoBtn" class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample"><span class="fw-bold">Double Click</span> for More Info</button>              
                     </div>
                 </div>
                 </div>`;
     detailsDiv.appendChild(div);
-}
 
-const moreInfo = () => {
-    const detailsDiv = document.getElementById('display-details');
-    const sensorDiv = document.createElement('div');
-    sensorDiv.innerHTML = `
+    window.scrollTo(0, 0);
+
+    document.getElementById('moreInfoBtn').addEventListener('click', function () {
+        const sensorDiv = document.createElement('div');
+
+        sensorDiv.innerHTML = `   
+        <div style="min-height: 120px;">
+         <div class="collapse collapse-horizontal" id="collapseWidthExample">
+         <div class="card card-body moreInfo-bg" style="background-image: url(${info.image});">
+             <h4 class="text-center fw-bold mb-3">Sensors</h4>
+                 <h6 class="fst-italic">${info.mainFeatures.sensors[0] ? info.mainFeatures.sensors[0] : ''}</h6>
+
+                 <h6 class="fst-italic">${info.mainFeatures.sensors[1] ? info.mainFeatures.sensors[1] : ''}</h6>
+
+                 <h6 class="fst-italic">${info.mainFeatures.sensors[2] ? info.mainFeatures.sensors[2] : ''}</h6>
+
+                 <h6 class="fst-italic">${info.mainFeatures.sensors[3] ? info.mainFeatures.sensors[3] : ''}</h6>
+
+                 <h6 class="fst-italic">${info.mainFeatures.sensors[4] ? info.mainFeatures.sensors[4] : ''}</h6>
+
+                 <h6 class="fst-italic">${info.mainFeatures.sensors[5] ? info.mainFeatures.sensors[5] : ''}</h6>
+
+                 <h6 class="fst-italic">${info.mainFeatures.sensors[6] ? info.mainFeatures.sensors[6] : ''}</h6>
+
+                 <h6 class="fst-italic">${info.mainFeatures.sensors[7] ? info.mainFeatures.sensors[7] : ''}</h6>
+
+                 <h6 class="fst-italic">${info.mainFeatures.sensors[8] ? info.mainFeatures.sensors[8] : ''}</h6>
+
+                 <h6 class="fst-italic">${info.mainFeatures.sensors[9] ? info.mainFeatures.sensors[9] : ''}</h6>
     
-<div style="min-height: 120px;">
-  <div class="collapse collapse-horizontal" id="collapseWidthExample">
-    <div class="card card-body">
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-    </div>
-  </div>
-</div>
-`;
-    detailsDiv.appendChild(sensorDiv);
+         </div>
+         </div>
+        </div>`;
+        detailsDiv.appendChild(sensorDiv);
 
+        const othersDiv = document.createElement('div');
 
-    const othersDiv = document.createElement('div');
-    othersDiv.innerHTML = `
-    
-<div style="min-height: 120px;">
-  <div class="collapse collapse-horizontal" id="collapseWidthExample">
-    <div class="card card-body">
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-      <p>dfaf</p>
-    </div>
-  </div>
-</div>
-`;
-    detailsDiv.appendChild(othersDiv);
+        othersDiv.innerHTML = `   
+        <div style="min-height: 120px;">
+         <div class="collapse collapse-horizontal" id="collapseWidthExample">
+         <div class="card card-body moreInfo-bg">
+
+             <h4 class="text-center fw-bold mb-3">Others</h4>
+                 <h6><span class="fw-bold">Bluetooth: </span><span class="fst-italic">${info.others.Bluetooth ? info.others.Bluetooth : ''}</span></h6>
+
+                 <h6><span class="fw-bold">GPS: </span><span class="fst-italic">${info.others.GPS ? info.others.GPS : ''}</span></h6>
+
+                 <h6><span class="fw-bold">NFC: </span><span class="fst-italic">${info.others.NFC ? info.others.NFC : ''}</span></h6>
+
+                 <h6><span class="fw-bold">Radio: </span><span class="fst-italic">${info.others.Radio ? info.others.Radio : ''}</span></h6>
+
+                 <h6><span class="fw-bold">USB: </span><span class="fst-italic">${info.others.USB ? info.others.USB : ''}</span></h6>
+
+                 <h6><span class="fw-bold">WLAN: </span><span class="fst-italic">${info.others.WLAN ? info.others.WLAN : ''}${info.others.WLAN ? info.others.WLAN : ''}</span></h6>    
+         </div>
+         </div>
+        </div>`;
+        detailsDiv.appendChild(othersDiv);
+    })
 }

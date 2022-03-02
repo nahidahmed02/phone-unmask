@@ -2,3 +2,10 @@
 h1{
     color:orange;
 }
+
+.moreInfo-bg{
+    background-repeat: no-repeat; 
+    background-size: 25%; 
+    background-position-x: right; 
+    background-position-y: center;
+}
