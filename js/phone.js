@@ -54,7 +54,7 @@ const displayPhone = phones => {
         document.getElementById('notFound').style.display = 'none';
         allPhones.forEach(phone => {
             const div = document.createElement('div');
-            // dynamic html
+            // dynamic html for searched phones
             div.innerHTML = `
                             <div class="col">
                                 <div class="card">
@@ -66,6 +66,8 @@ const displayPhone = phones => {
                             </div>
                             </div>
                         </div>`;
+
+            // to show the dynamic html in UI
             displayDiv.appendChild(div);
         })
     }
@@ -106,10 +108,11 @@ const displayDetails = info => {
 
                         <h6 class="card-title"><span class="fw-bold">Chip Set :</span> <span class="fst-italic"> ${info.mainFeatures.chipSet}</span></h6>  
 
-                        <button id="moreInfoBtn" class="btn btn-info btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample"><span class="fw-bold">Double Click</span> for More Info</button>              
+                        <button id="moreInfoBtn" class="btn btn-info btn-sm" type="button">More Info</button>              
                     </div>
                 </div>
                 </div>`;
+
     // to show dynamic html of details in UI
     detailsDiv.appendChild(div);
     // to go on the top for details
@@ -122,7 +125,7 @@ const displayDetails = info => {
         // dynamic html for sensors
         sensorDiv.innerHTML = `   
         <div style="min-height: 120px;">
-         <div class="collapse collapse-horizontal" id="collapseWidthExample">
+         
          <div class="card card-body moreInfo-bg" style="background-image: url(${info.image});">
              <h4 class="text-center fw-bold mb-3">Sensors</h4>
                  <h6 class="fst-italic">${info.mainFeatures.sensors[0] ? info.mainFeatures.sensors[0] : ''}</h6>
@@ -146,7 +149,7 @@ const displayDetails = info => {
                  <h6 class="fst-italic">${info.mainFeatures.sensors[9] ? info.mainFeatures.sensors[9] : ''}</h6>
     
          </div>
-         </div>
+         
         </div>`;
         // to show dynamic html of sensors in UI
         detailsDiv.appendChild(sensorDiv);
@@ -156,7 +159,7 @@ const displayDetails = info => {
         // dynamic html for others
         othersDiv.innerHTML = `   
         <div style="min-height: 120px;">
-         <div class="collapse collapse-horizontal" id="collapseWidthExample">
+         
          <div class="card card-body moreInfo-bg">
 
              <h4 class="text-center fw-bold mb-3">Others</h4>
@@ -172,7 +175,7 @@ const displayDetails = info => {
 
                  <h6><span class="fw-bold">WLAN: </span><span class="fst-italic">${info.others.WLAN ? info.others.WLAN : ''}${info.others.WLAN ? info.others.WLAN : ''}</span></h6>    
          </div>
-         </div>
+        
         </div>`;
         // to show dynamic html of sensors in UI
         detailsDiv.appendChild(othersDiv);
