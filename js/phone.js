@@ -81,13 +81,13 @@ const loadDetails = id => {
 
 // display details of specefic phone
 const displayDetails = info => {
-    console.log(info);
+
     // clear details field
     const detailsDiv = document.getElementById('display-details');
     detailsDiv.textContent = '';
 
     const div = document.createElement('div');
-    // dynamic html
+    // dynamic html to show details
     div.innerHTML = `
                     <div class="col">
                         <div class="card">
@@ -110,13 +110,16 @@ const displayDetails = info => {
                     </div>
                 </div>
                 </div>`;
+    // to show dynamic html of details in UI
     detailsDiv.appendChild(div);
-
+    // to go on the top for details
     window.scrollTo(0, 0);
 
+    // for sensors and others info
     document.getElementById('moreInfoBtn').addEventListener('click', function () {
         const sensorDiv = document.createElement('div');
 
+        // dynamic html for sensors
         sensorDiv.innerHTML = `   
         <div style="min-height: 120px;">
          <div class="collapse collapse-horizontal" id="collapseWidthExample">
@@ -145,10 +148,12 @@ const displayDetails = info => {
          </div>
          </div>
         </div>`;
+        // to show dynamic html of sensors in UI
         detailsDiv.appendChild(sensorDiv);
 
+        // others
         const othersDiv = document.createElement('div');
-
+        // dynamic html for others
         othersDiv.innerHTML = `   
         <div style="min-height: 120px;">
          <div class="collapse collapse-horizontal" id="collapseWidthExample">
@@ -169,6 +174,7 @@ const displayDetails = info => {
          </div>
          </div>
         </div>`;
+        // to show dynamic html of sensors in UI
         detailsDiv.appendChild(othersDiv);
     })
 }
